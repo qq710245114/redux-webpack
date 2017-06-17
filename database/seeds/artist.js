@@ -3,7 +3,7 @@ import faker from 'faker';
 import { GENRES } from '../constants';
 
 module.exports = function() {
-  return {
+return {
     _id: _.uniqueId(),
     name: faker.name.findName(),
     age: randomBetween(15, 45),
@@ -15,39 +15,39 @@ module.exports = function() {
     labelName: faker.company.companyName(),
     retired: faker.random.boolean(),
     albums: getAlbums()
-  };
+};
 }
 
 function getAlbums() {
-  return _.times(randomBetween(0, 5), () => {
-    const copiesSold = randomBetween(0, 1000000);
+    return _.times(randomBetween(0, 5), () => {
+        const copiesSold = randomBetween(0, 1000000);
 
-    return {
-      title: _.capitalize(faker.random.words()),
-      date: faker.date.past(),
-      copiesSold,
-      numberTracks: randomBetween(1, 20),
-      image: getAlbumImage(),
-      revenue: copiesSold * 12.99
-    };
-  });
+        return {
+            title: _.capitalize(faker.random.words()),
+            date: faker.date.past(),
+            copiesSold,
+            numberTracks: randomBetween(1, 20),
+            image: getAlbumImage(),
+            revenue: copiesSold * 12.99
+        };
+    });
 }
 
 function getAlbumImage() {
-  const types = _.keys(faker.image);
-  const method = randomEntry(types);
+    const types = _.keys(faker.image);
+    const method = randomEntry(types);
 
-  return faker.image[method]();
+    return faker.image[method]();
 }
 
 function getGenre() {
-  return randomEntry(GENRES);
+    return randomEntry(GENRES);
 }
 
 function randomEntry(array) {
-  return array[~~(Math.random() * array.length)];
+    return array[~~(Math.random() * array.length)];
 }
 
 function randomBetween(min, max) {
-  return ~~(Math.random() * (max-min)) + min;
+    return ~~(Math.random() * (max - min)) + min;
 }
